@@ -1,0 +1,175 @@
+﻿@model IEnumerable<StoreManagement.App_Data.ProductSale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Date) </th>
+        <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+        <th>@Html.DisplayNameFor(model => model.Product.ProductName)</th>
+        <th>@Html.DisplayNameFor(model => model.Store.StoreName)</th>        
+        <th>@Html.Display("Total")</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Date)</td>
+            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+            <td>@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Store.StoreName)</td>
+            <td>ViewBag.Total</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProdSalesId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProdSalesId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProdSalesId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    .flex-container {
+        display: -webkit-flex;
+        display: flex;
+        width: 400px;
+        height: 250px;
+        background-color: lightgrey;
+    }
+
+    .flex-item {
+        background-color: cornflowerblue;
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+    }
+</style>
+
+
+        <div class="flex-container">
+            <div class="product">
+                <div class="product-image">
+                    @foreach (var item in Model.Select(o => o.Product).ToList())
+                    {
+                        <div class="flex-item" id="@item.ProductId">@item.ProductName</div>
+                    }
+                 </div>
+             </div>
+        </div>
+
+
+    @*<div class="products-header">
+        <h2>Awesome shirts and sweathers</h2>
+    </div>
+    <div class="products">
+        <div class="product">
+            <div class="product-image">
+                <img src="http://www.roguefashionlabel.com/media/catalog/product/cache/1/small_image/260x/9df78eab33525d08d6e5fb8d27136e95/s/w/sweater_-_awesome_gr.jpg" alt="Sweather" />
+            </div>
+            <div class="product-title">
+                <strong>The Awesome Sweather</strong>
+            </div>
+            <div class="product-meta">
+                <div class="product-meta-price">€ 14,50</div>
+            </div>
+            <div class="product-link">
+                <a href="http://roguefashionlabel.com">Get it!</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-image">
+                <img src="http://www.roguefashionlabel.com/media/catalog/product/cache/1/small_image/260x/9df78eab33525d08d6e5fb8d27136e95/l/o/longsleeve_-_sorry_wh-bk.jpg" alt="Sweather Sorry" />
+            </div>
+            <div class="product-title">
+                <strong>The Sorry Shirt</strong>
+            </div>
+            <div class="product-meta">
+                <div class="product-meta-price">€ 9,50</div>
+            </div>
+            <div class="product-link">
+                <a href="http://roguefashionlabel.com">Get it!</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-sale">
+                -20%!
+            </div>
+            <div class="product-image">
+                <img src="http://www.roguefashionlabel.com/media/catalog/product/cache/1/small_image/260x/9df78eab33525d08d6e5fb8d27136e95/s/w/sweater_-_awesome_gr.jpg" alt="Sweather" />
+            </div>
+            <div class="product-title">
+                <strong>The Awesome Sweather</strong>
+            </div>
+            <div class="product-meta">
+                <div class="product-meta-price">€ 14,50</div>
+            </div>
+            <div class="product-link">
+                <a href="http://roguefashionlabel.com">Get it!</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-image">
+                <img src="http://www.roguefashionlabel.com/media/catalog/product/cache/1/small_image/260x/9df78eab33525d08d6e5fb8d27136e95/s/w/sweater_-_awesome_gr.jpg" alt="Sweather" />
+            </div>
+            <div class="product-title">
+                <strong>The Awesome Sweather</strong>
+            </div>
+            <div class="product-meta">
+                <div class="product-meta-price">€ 14,50</div>
+            </div>
+            <div class="product-link">
+                <a href="http://roguefashionlabel.com">Get it!</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-image">
+                <img src="http://www.roguefashionlabel.com/media/catalog/product/cache/1/small_image/260x/9df78eab33525d08d6e5fb8d27136e95/s/w/sweater_-_awesome_gr.jpg" alt="Sweather" />
+            </div>
+            <div class="product-title">
+                <strong>The Awesome Sweather</strong>
+            </div>
+            <div class="product-meta">
+                <div class="product-meta-price">€ 14,50</div>
+            </div>
+            <div class="product-link">
+                <a href="http://roguefashionlabel.com">Get it!</a>
+            </div>
+        </div>
+        <div class="product">
+            <div class="product-image">
+                <img src="http://www.roguefashionlabel.com/media/catalog/product/cache/1/small_image/260x/9df78eab33525d08d6e5fb8d27136e95/s/w/sweater_-_awesome_gr.jpg" alt="Sweather" />
+            </div>
+            <div class="product-title">
+                <strong>The Awesome Sweather</strong>
+            </div>
+            <div class="product-meta">
+                <div class="product-meta-price">€ 14,50</div>
+            </div>
+            <div class="product-link">
+                <a href="http://roguefashionlabel.com">Get it!</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Date').datepicker({
+                dateFormat: "dd/mm/yy",
+                showStatus: true,
+                showWeeks: true,
+                currentText: 'Now',
+                autoSize: true,
+                gotoCurrent: true,
+                showAnim: 'blind',
+                highlightWeek: true
+            });
+        });
+    </script>*@
